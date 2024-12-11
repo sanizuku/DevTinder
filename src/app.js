@@ -1,22 +1,20 @@
 const express = require("express");
 
 const app = express();
-
-app.get(
-  "/user",
+app.use(
+  "/admin",
   (req, res, next) => {
-    console.log("Handle the route user!1");
-    // res.send("Response!1");
-    next();
+    console.log("Admin auth is getting checked");
+    const token = "xyzz";
+    const isAdminAuthorized = token === "xyz";
+    if (!isAdminAuthorized) {
+      res.status(401).send("unauthorized request");
+    } else {
+      next();
+    }
   },
-
-  (req, res, next) => {
-    next();
-  },
-
   (req, res) => {
-    console.log("Handle the route user!3");
-    res.send("Response!3");
+    res.send("admin authenticated");
   }
 );
 
