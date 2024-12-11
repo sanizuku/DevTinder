@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 
 app.get("/user", (req, res) => {
+  console.log(req.query);
   res.send({ firstName: "Sandeep", lastName: "Singh" });
 });
 app.post("/user", (req, res) => {
@@ -14,6 +15,10 @@ app.delete("/user", (req, res) => {
 
 app.use("/test", (req, res) => {
   res.send("helo hello");
+});
+app.get("/user/:userId/:name/:password", (req, res) => {
+  console.log(req.params);
+  res.send({ firstName: "Rahul", lastName: "Saini" });
 });
 
 app.listen(7777, () => {
