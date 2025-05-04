@@ -11,4 +11,23 @@ const validateSignUpData = (req) => {
     throw new Error("Please enter a strong password");
   }
 };
-module.exports = { validateSignUpData };
+
+const validateEditProfileData = (req) => {
+  const ALLOWED_UPDATES = [
+    "photoUrl",
+    "gender",
+    "skills",
+    "age",
+    "about",
+    "firstName",
+    "lastName",
+  ];
+  const isUpdatedAllowed = Object.keys(req.body).every((fields) =>
+    ALLOWED_UPDATES.includes(fields)
+  );
+  // if (data?.skills.length > 10) {
+  //   throw new Error("Skills can bot be greater than 10");
+  // }
+  return isUpdatedAllowed;
+};
+module.exports = { validateSignUpData, validateEditProfileData };
