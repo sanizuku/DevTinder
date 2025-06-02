@@ -10,7 +10,7 @@ authRouter.post("/Signup", async (req, res) => {
     const { firstName, lastName, emailId, password } = req.body;
     //Encrypt the password
     const passwordHash = await bcrypt.hash(password, 10);
-    console.log(passwordHash);
+    // console.log(passwordHash);
     //creating a new instance of the user model
     const user = new User({
       //explicitly write never trust req.body
@@ -42,7 +42,7 @@ authRouter.post("/login", async (req, res) => {
     if (isPasswordValid) {
       //create JWT token
       const token = await user.getJWT();
-      console.log(token);
+      // console.log(token);
       //add token to cookie
       res.cookie("token", token, {
         expires: new Date(Date.now() + 8 * 3600000),
